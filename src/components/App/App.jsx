@@ -17,8 +17,6 @@ export const App = () => {
   }, [contacts]);
 
   const dataSubmit = data => {
-    console.log(data);
-
     const newContact = {
       id: nanoid(),
       name: data.name,
@@ -31,7 +29,6 @@ export const App = () => {
     }
     
     setContacts(prevState => ([...prevState, newContact]));
-    return contacts;
   }
 
   const changeFilter = event => {
@@ -42,7 +39,7 @@ export const App = () => {
   const filteredContacts = contacts.filter(contact=> contact.name.toLowerCase().includes(normalizedFilter));
  
   const deleteContact = id => {
-    setContacts(contacts.filter(contact => contact.id !== id))
+    setContacts(prevState => prevState.filter(contact => contact.id !== id));
   }
 
   return(
